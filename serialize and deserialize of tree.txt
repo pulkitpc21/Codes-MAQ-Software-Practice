@@ -1,0 +1,24 @@
+class Tree {
+    Tree temp=null;
+	public void serialize(Node root, ArrayList<Integer> A) {
+	   if(root==null){
+	       A.add(-1);
+	       return ;
+	   }
+	   A.add(root.data);
+	   serialize(root.left,A);
+	   serialize(root.right,A);
+	}
+	int index=0;
+    public Node deSerialize(ArrayList<Integer> A){
+     if(index==A.size())
+     return null;
+     int data=A.get(index++);
+     if(data==-1)
+     return null;
+     Node root=new Node(data);
+     root.left=deSerialize(A);
+     root.right=deSerialize(A);
+     return root;
+    }
+}
